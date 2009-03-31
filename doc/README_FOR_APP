@@ -1,2 +1,5 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+== RoomAtRailsConf.com
+
+My attempt to win the free hotel room to RailsConf '09.
+
+Also, a nice example app for my new ActiveTwitter library, and some other nice Rails features.
