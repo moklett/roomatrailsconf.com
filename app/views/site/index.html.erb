@@ -1,0 +1,55 @@
+<div id="stripe"></div>
+<div id="reasons" class="container clearfix">
+  <div id="my-reasons" class="column">
+    <dl>
+      <dt>
+        My <%= pluralize(MyTweet.count, '<br/>Reason') %>
+      </dt>
+      <%- @my_tweets.each_with_index do |tweet,idx| -%>
+      <dd class="tweet<%= idx==0 ? ' first' : nil %>">
+        <p>
+          <%= h tweet.text %>
+        </p>
+        <p class="timestamp">
+          <%= link_to tweet.timestamp.strftime('%m/%d/%Y at %I:%M%p'), twitter_status_url(tweet) %>
+        </p>
+      </dd>
+      <%- end -%>
+    </dl>
+  </div>
+
+  <div id="my-supporters" class="column">
+    <dl>
+      <dt>
+        My <%= pluralize(Follower.count, '<br/>Supporter') %>
+      </dt>
+      <% @followers.each_with_index do |tweeter,idx| -%>
+      <dd class="tweeter<%= idx == 0 ? ' first' : nil%>">
+        <p class="clearfix">
+          <%= link_to image_tag(tweeter.profile_image_url, :alt => tweeter.screen_name, :class => 'left'), twitter_user_url(tweeter.screen_name) %>
+          <%= link_to tweeter.screen_name, twitter_user_url(tweeter.screen_name) %><br/>
+          <%= link_to tweeter.name, twitter_user_url(tweeter.screen_name) %><br/>
+        </p>
+      </dd>
+      <% end -%>
+    </dl>
+  </div>
+
+  <div id="their-reasons" class="column">
+    <dl>
+      <dt>
+        The<br/>Buzz
+      </dt>
+      <%- @replies.each_with_index do |tweet,idx| -%>
+      <dd class="tweet<%= idx==0 ? ' first' : nil %>">
+        <p>
+          <%= h tweet.text %>
+        </p>
+        <p class="timestamp">
+          By <%= link_to tweet.user_screen_name, twitter_user_url(tweet.user_screen_name)%> on <%= link_to tweet.timestamp.strftime('%m/%d/%Y at %I:%M%p'), twitter_status_url(tweet) %>
+        </p>
+      </dd>
+      <%- end -%>
+    </dl>
+  </div>
+</div>

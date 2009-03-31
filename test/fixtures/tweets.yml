@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  timestamp: 2009-03-28 11:36:11
+  twitter_id: 1
+  text: MyText
+  source: MyString
+  truncated: false
+  in_reply_to_status_id: 1
+  in_reply_to_user_id: 1
+  favorited: false
+  user_id: 1
+  user_name: MyString
+  user_screen_name: MyString
+  user_profile_image_url: MyString
+  type: MyString
+
+two:
+  timestamp: 2009-03-28 11:36:11
+  twitter_id: 1
+  text: MyText
+  source: MyString
+  truncated: false
+  in_reply_to_status_id: 1
+  in_reply_to_user_id: 1
+  favorited: false
+  user_id: 1
+  user_name: MyString
+  user_screen_name: MyString
+  user_profile_image_url: MyString
+  type: MyString
