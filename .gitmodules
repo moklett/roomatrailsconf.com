@@ -1,0 +1,3 @@
+[submodule "vendor/plugins/activetwitter"]
+	path = vendor/plugins/activetwitter
+	url = git://github.com/moklett/activetwitter.git
