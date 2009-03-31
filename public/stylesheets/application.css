@@ -64,7 +64,6 @@ body {
 	line-height: 1;
 	text-align: center;
 	font-weight: normal;
-	margin-top: -100px;
 }
 
 #reasons dd {
@@ -127,6 +126,7 @@ body {
 #stripe {
 	border-top: 96px solid #acc923;
 	border-bottom: 4px solid #332826;
+	margin-bottom: -100px;
 }
 
 body.site-what_is_this #main h1 {
