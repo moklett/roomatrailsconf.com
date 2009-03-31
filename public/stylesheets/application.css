@@ -87,6 +87,7 @@ body {
 #reasons .column {
 	width: 300px;
 	float: left;
+	overflow:hidden;
 }
 
 #reasons p {
@@ -94,7 +95,6 @@ body {
 	font-size: 1em;
 	color: #332826;
 	margin: 0;
-	text-align: justify;
 }
 
 #reasons p.timestamp {
