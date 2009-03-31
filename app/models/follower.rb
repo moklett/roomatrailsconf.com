@@ -69,7 +69,7 @@ class Follower < User
   
     # Number of followers, as reported by Twitter
     def remote_followers_count
-      ActiveTwitter.me.followers_count.to_i
+      ActiveTwitter::User.follower_ids.size
     end
     memoize :remote_followers_count
   
