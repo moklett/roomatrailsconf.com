@@ -6,3 +6,5 @@ config/database.yml
 .DS_Store
 public/index.html
 public/what-is-this.html
+Capfile
+config/deploy.rb
