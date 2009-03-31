@@ -1,5 +1,5 @@
 class SiteController < ApplicationController
-  caches_page :index
+  caches_page :index, :what_is_this
   cache_sweeper :page_sweeper, :only => [:index]
 
   before_filter :set_body_class
