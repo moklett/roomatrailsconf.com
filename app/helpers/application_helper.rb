@@ -6,4 +6,8 @@ module ApplicationHelper
       %{ class="#{@body_class}"}
     end
   end
+  
+  def page_title
+    @page_title || "Please Make It Mine"
+  end
 end
