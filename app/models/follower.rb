@@ -22,6 +22,18 @@ class Follower < User
       end
       import_counter
     end
+    
+    # Delete Followers from DB that are no longer followers on Twitter.  Sad.
+    def purge
+      if need_to_purge?
+        Follower.destroy(Follower.find_all_by_twitter_id(ids_to_purge).collect(&:id))
+      end
+      ids_to_purge.size
+    end
+    
+    def twitter_ids
+      Follower.all.collect{|f|f.twitter_id.to_i}
+    end
 
     protected
     # Bulk fetch and initialization of followers.  Currently, it seems Twitter places your most
@@ -48,14 +60,23 @@ class Follower < User
     end
     
     def need_to_fetch?
-      remote_followers_count > Follower.count
+      !ids_to_fetch.blank?
+    end
+    
+    def need_to_purge?
+      !ids_to_purge.blank?
     end
   
     def ids_to_fetch
-      ActiveTwitter.my.follower_ids - Follower.all.collect{|f| f.id.to_i}
+      remote_follower_ids - Follower.twitter_ids
     end
     memoize :ids_to_fetch
-  
+    
+    def ids_to_purge
+      Follower.twitter_ids - remote_follower_ids
+    end
+    memoize :ids_to_purge
+
     # A loop to control fetching and throttle API calls.  The passed block will be executed at most 
     # FETCH_RETRY_LIMIT times, and will stop if we've appeared to have fetched all followers from
     # Twitter.  The passed block should perform some sort of Follower creation.
@@ -67,9 +88,15 @@ class Follower < User
       end
     end
   
+    # Remote follower ids
+    def remote_follower_ids
+      ActiveTwitter.my.follower_ids
+    end
+    memoize :remote_follower_ids
+    
     # Number of followers, as reported by Twitter
     def remote_followers_count
-      ActiveTwitter::User.follower_ids.size
+      remote_follower_ids.size
     end
     memoize :remote_followers_count
   
